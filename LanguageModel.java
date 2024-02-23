@@ -95,17 +95,16 @@ public class LanguageModel {
 	 * @return the generated text
 	 */
 	public String generate(String initialText, int textLength) {
-        StringBuilder window = new StringBuilder(initialText.substring(initialText.length() - windowLength));
-        StringBuilder generatedText = window;
-
         if(initialText.length() < windowLength){
             return initialText;
         }
+        StringBuilder window = new StringBuilder(initialText.substring(initialText.length() - windowLength));
+        StringBuilder generatedText = window;
 
-        while (generatedText.length() <= textLength + windowLength){
+        while (generatedText.length() < (textLength + windowLength)){
             List currentList = CharDataMap.get(window.toString());
             if (currentList == null){
-                return generatedText.toString();
+                break;
             }
             generatedText.append(getRandomChar(currentList));
             window = new StringBuilder(generatedText.substring(generatedText.length() - windowLength));
@@ -125,13 +124,6 @@ public class LanguageModel {
 	}
 
     public static void main(String[] args) {
-      String word = "computer_science";
-      LanguageModel test = new LanguageModel(3);
-      List list = new List();
-      for (int i = 0; i < word.length(); i++){
-          list.update(word.charAt(word.length()-1 - i));
-      }
-        test.calculateProbabilities(list);
-        System.out.print(list.toString());
+
     }
 }
