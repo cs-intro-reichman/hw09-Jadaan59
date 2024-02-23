@@ -64,7 +64,7 @@ public class LanguageModel {
             numberOfChars += probs.get(i).count;
         }
 
-        double cpProbability = 0.0;
+        double cpProbability = 0;
         for (int i = 0; i < probs.getSize(); i++) {
             probs.get(i).p = ((double) probs.get(i).count) / numberOfChars;
             probs.get(i).cp = cpProbability + probs.get(i).p;
@@ -125,7 +125,13 @@ public class LanguageModel {
 	}
 
     public static void main(String[] args) {
-      String word = "committee ";
-
+      String word = "computer_science";
+      LanguageModel test = new LanguageModel(3);
+      List list = new List();
+      for (int i = 0; i < word.length(); i++){
+          list.update(word.charAt(word.length()-1 - i));
+      }
+        test.calculateProbabilities(list);
+        System.out.print(list.toString());
     }
 }
