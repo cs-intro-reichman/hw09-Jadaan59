@@ -55,7 +55,7 @@ public class List {
         StringBuilder str = new StringBuilder("(");
         ListIterator list = new ListIterator(first);
         while (list.hasNext()) {
-            str.append(list.current.toString());
+            str.append(list.current.toString() + " ");
             list.next();
         }
         return (str.substring(0,str.length()-1) + ")");
@@ -158,13 +158,4 @@ public class List {
         return new ListIterator(current);
     }
 
-    public static void main(String[] args) {
-        List list = new List();
-        String word = "committee ";
-        for (int i = 0; i < word.length(); i++) {
-            list.update(word.charAt(i));
-        }
-        System.out.print(list);
-
-    }
 }
