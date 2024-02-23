@@ -52,13 +52,13 @@ public class List {
      * GIVE Textual representation of this list.
      */
     public String toString() {
-        StringBuilder str = new StringBuilder();
+        StringBuilder str = new StringBuilder("(");
         ListIterator list = new ListIterator(first);
         while (list.hasNext()) {
             str.append(list.current.toString());
             list.next();
         }
-        return str.toString();
+        return (str.substring(0,str.length()-1) + ")");
     }
 
 
